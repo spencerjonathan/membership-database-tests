@@ -1,1 +1,0 @@
-# membership-database-tests
