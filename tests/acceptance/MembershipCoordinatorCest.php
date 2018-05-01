@@ -62,6 +62,7 @@ class MembershipCoordinatorCest
 	$I->see('Sedlescombe');
 	$I->see('Telephone Number');
 	$I->see('Address 1');
+	$I->see('Membership Form Rec\'d');
     }
 
     public function canSeeAMembersInvoices(AcceptanceTester $I)

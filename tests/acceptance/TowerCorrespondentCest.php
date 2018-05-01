@@ -53,6 +53,7 @@ class TowerCorrespondentCest
 	$I->see('16-70');
 	$I->dontSee('Telephone Number');
 	$I->dontSee('Address 1');
+	$I->dontSee('Membership Form Rec\'d');
     }
 
 }
