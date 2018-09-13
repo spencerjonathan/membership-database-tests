@@ -1,2 +1,2 @@
-mysql -u root -p < install.mysql.utf8.sql 
+mysql -u root < install.mysql.utf8.sql 
 

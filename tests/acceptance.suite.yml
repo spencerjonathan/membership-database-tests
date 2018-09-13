@@ -2,5 +2,5 @@ actor: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://localhost/Joomla/
+            url: http://localhost/joomla/
         - \Helper\Acceptance

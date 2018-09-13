@@ -1,4 +1,4 @@
 #!/bin/bash -x
 
-./refresh_database.sh
+sudo ./refresh_database.sh
 codecept run acceptance

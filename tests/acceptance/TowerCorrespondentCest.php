@@ -11,7 +11,7 @@ class TowerCorrespondentCest
 
     public function canOnlySeeOwnTowerOnDashboard(AcceptanceTester $I)
     {
-	$I->amOnPage('/index.php/test-dashboard');
+	$I->amOnPage('/index.php/component/memberdatabase');
         $I->comment('I only see Lindfield, All Saints');
 	$I->see('Lindfield, All Saints', '.members-without-invoice');
 	$I->dontSee('Lindfield, All Saints', '.invoices-to-be-paid');
@@ -21,11 +21,11 @@ class TowerCorrespondentCest
     // tests
     public function TowerCorrespondentCanCreateInvoice(AcceptanceTester $I)
     {
-	$I->amOnPage('/index.php/test-dashboard');
+	$I->amOnPage('/index.php/component/memberdatabase');
         $I->comment('I See Lindfield, All Saints');
 	$I->see('Lindfield, All Saints');
         $I->comment('I click Login button');
-	$I->amOnPage('/index.php/test-dashboard?view=invoice&layout=create&list_view=invoice&towerId=82');
+	$I->amOnPage('/index.php/component/memberdatabase?view=invoice&layout=create&list_view=invoice&towerId=82');
         $I->comment('I see correct total of 72.00');
         $I->see('72.00');
 	$I->click(['class' => 'btn-create-invoice']);
@@ -45,7 +45,7 @@ class TowerCorrespondentCest
     public function canOnlySeeMinimalMemberAttributes(AcceptanceTester $I)
     {
 	$I->amGoingTo('check that I can only see minimal attributes of a member');
-	$I->amOnPage('/index.php/component/memberdatabase/?view=members');
+	$I->amOnPage('/index.php/component/memberdatabase?view=members');
 	$I->see('Spencer, Jonathan');
 	$I->dontSee('Abbott, Deborah');
 	$I->click('Spencer, Jonathan');

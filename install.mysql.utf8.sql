@@ -979,7 +979,7 @@ CREATE TABLE `c1jr0_md_usertower` (
 --
 
 INSERT INTO `c1jr0_md_usertower` (`id`, `user_id`, `tower_id`) VALUES
-(1, 441, 82),
-(2, 441, 138),
-(3, 442, 82);
+(1, 412, 82),
+(2, 412, 138),
+(3, 413, 82);
 

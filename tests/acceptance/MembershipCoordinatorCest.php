@@ -70,7 +70,7 @@ class MembershipCoordinatorCest
     {
 	$I->amGoingTo('check that I can only see minimal attributes of a member');
 	$I->amOnPage('/index.php/component/memberdatabase/?view=member&layout=edit&id=901');
-	$I->see('Invoices');
+	//$I->see('Invoices');
 	$I->see('Warnham', '.invoice-list');
 	$I->see('£132.00');
 	$I->dontSee('Lindfield', '.invoice-list');
