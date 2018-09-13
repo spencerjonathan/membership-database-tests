@@ -11,7 +11,7 @@ class MembershipCoordinatorCest
 
     public function canOnlySeeOwnTowerOnDashboard(AcceptanceTester $I)
     {
-	$I->amOnPage('/index.php/component/memberdatabase');
+	$I->amOnPage('/index.php?option=com_memberdatabase&view=memberdatabase');
         $I->comment('I see all towers');
 	$I->see('Aldingbourne', '.members-without-invoice');
 	$I->see('Warnham, St Margaret', '.members-without-invoice');
@@ -21,21 +21,22 @@ class MembershipCoordinatorCest
     // tests
     public function canCreateInvoice(AcceptanceTester $I)
     {
-	$I->amOnPage('/index.php/component/memberdatabase');
+	$I->amOnPage('/index.php?option=com_memberdatabase&view=memberdatabase');
         $I->comment('I See Warnham, St Margaret');
 	$I->see('Warnham, St Margaret', '.members-without-invoice');
-	$I->amOnPage('/index.php/component/memberdatabase/?view=invoice&layout=create&list_view=invoice&towerId=138');
+	//$I->amOnPage('/index.php?option=com_memberdatabase&view=invoice&layout=create&list_view=invoice&towerId=138');
+	$I->amOnPage('/index.php?option=com_memberdatabase&view=invoice&layout=create&towerId=138');
         $I->comment('I see correct total of 132.00');
         $I->see('132.00');
 	$I->click(['class' => 'btn-create-invoice']);
         $I->see('Invoice created successfully');
 	$I->dontSee('Warnham, St Margaret', '.members-without-invoice');
 	$I->see('Warnham, St Margaret', '.invoices-to-be-paid');
-	$I->amOnPage('/index.php/component/memberdatabase/?view=invoices');
+	$I->amOnPage('/index.php?option=com_memberdatabase&view=invoices');
 	$I->see('Warnham, St Margaret');
 
 	// Check that the invoice exists
-	$I->amOnPage('/index.php/component/memberdatabase/?view=invoice&layout=edit&id=1');
+	$I->amOnPage('/index.php?option=com_memberdatabase&view=invoice&layout=edit&id=1');
 	//$I->click('Lindfield/10');
 	$I->see('Member Database - Invoice Details');
 	$I->see('Warnham, St Margaret');
@@ -48,7 +49,7 @@ class MembershipCoordinatorCest
 	//$I->click(['name' => 'save_button']);
 	$I->click(['class' => 'btn-save-invoice']);
 
-        $I->see('Item successfully saved');
+        $I->see('Item saved');
         $I->see('Paid');
 	
     }
