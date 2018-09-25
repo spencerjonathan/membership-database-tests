@@ -4,3 +4,8 @@ modules:
         - PhpBrowser:
             url: http://localhost/joomla/
         - \Helper\Acceptance
+        - Db:
+            dsn: "mysql:host=localhost;dbname=joomla"
+            user: "joomla"
+            password: "12345"
+
