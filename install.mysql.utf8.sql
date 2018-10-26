@@ -1015,3 +1015,18 @@ CREATE TABLE `c1jr0_md_new_member` (
   `can_publish_name` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1700 DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `c1jr0_md_new_member_proposer`;
+CREATE TABLE `c1jr0_md_new_member_proposer` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`newmember_id` INT NOT NULL,
+	`email` varchar(100) NOT NULL,
+	`hash_token` VARCHAR(100) NOT NULL,
+	`created_date` timestamp NOT NULL,
+	`approved_flag` tinyint(1) DEFAULT NULL,
+	PRIMARY KEY (`id`)
+);
+ALTER TABLE `c1jr0_md_new_member_proposer` ADD `mod_date` TIMESTAMP NULL DEFAULT NULL AFTER `approved_flag`;
+
+
