@@ -45,15 +45,53 @@ class UnregisteredUserCest
         $I->comment('Record created for new member with id = ' . $record_id);
 
         $I->comment('I can use the token to populate the rest of the membership details');
-        $I->amOnPage('/index.php/component/memberdatabase/?view=newmember&layout=edit&token=' . $token . '&id=' . $record_id);
-        
-        //$forenames = $I->grabValueFrom('');
-        
-        //$I->assert
+        $I->amOnPage('/index.php/component/memberdatabase/?view=newmember&layout=edit&stage=main&token=' . $token);
         
         $I->seeInField('#jform_forenames', 'Fredrick');
         $I->seeInField('#jform_email', 'fred@jones.com');
         $I->seeInField('#jform_surname', 'Jones');
+        
+        $I->fillField('jform[address1]', 'Number 1 Toy Town');
+        $I->selectOption('jform[tower_id]', 'Lindfield, All Saints');
+        $I->selectOption('jform[member_type_id]', 'Adult');
+        $I->selectOption('jform[insurance_group]', '16-70');
+        $I->click([
+            'class' => 'btn-save-newmember'
+        ]);
+        
+        $I->seeInDatabase('c1jr0_md_new_member', array(
+            'email' => 'fred@jones.com',
+            'address1' => 'Number 1 Toy Town'
+        ));
+        
+        $I->see('Proposers');
+        
+        $I->fillField('jform[proposer_email]', 'jm@abc.com');
+        $I->fillField('jform[seconder_email]', 'fred@blogs.com');
+        
+        $I->click([
+            'class' => 'btn-save-newmember'
+        ]);
+        
+        $I->see('No current members have email address jm@abc.com');
+        $I->see('Proposers');
+        
+        $I->fillField('jform[proposer_email]', 'fred@blogs.com');
+        
+        $I->click([
+            'class' => 'btn-save-newmember'
+        ]);
+        
+        $I->see('Proposer and Seconder email addresses must be different');
+        $I->see('Proposers');
+        
+        $I->fillField('jform[proposer_email]', 'peter@rabbit.com');
+        
+        $I->click([
+            'class' => 'btn-save-newmember'
+        ]);
+        
+        $I->see('You\'re on the default page for newmember');
         
         
     }
