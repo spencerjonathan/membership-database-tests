@@ -1030,6 +1030,6 @@ CREATE TABLE `c1jr0_md_new_member_proposer` (
 ALTER TABLE `c1jr0_md_new_member_proposer` ADD `mod_date` TIMESTAMP NULL DEFAULT NULL AFTER `approved_flag`;
 
 
-ALTER TABLE `#__md_member_type` ADD `new_member_type` BOOLEAN NOT NULL DEFAULT FALSE AFTER `enabled`;
+ALTER TABLE `c1jr0_md_member_type` ADD `new_member_type` BOOLEAN NOT NULL DEFAULT FALSE AFTER `enabled`;
 
-update `#__md_member_type` set `new_member_type` = 1 where id in (1, 5, 7);
+update `c1jr0_md_member_type` set `new_member_type` = 1 where id in (1, 5, 7);
