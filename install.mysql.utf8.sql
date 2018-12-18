@@ -1033,3 +1033,6 @@ ALTER TABLE `c1jr0_md_new_member_proposer` ADD `mod_date` TIMESTAMP NULL DEFAULT
 ALTER TABLE `c1jr0_md_member_type` ADD `new_member_type` BOOLEAN NOT NULL DEFAULT FALSE AFTER `enabled`;
 
 update `c1jr0_md_member_type` set `new_member_type` = 1 where id in (1, 5, 7);
+ALTER TABLE `c1jr0_md_new_member_proposer` ADD `member_id` INT DEFAULT NULL AFTER `newmember_id`;
+
+

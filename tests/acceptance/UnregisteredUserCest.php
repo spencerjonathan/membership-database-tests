@@ -92,7 +92,27 @@ class UnregisteredUserCest
         ]);
         
         $I->see('You\'re on the default page for newmember');
+
+        $proposer_id = $I->grabFromDatabase('c1jr0_md_new_member_proposer', 'id', array('newmember_id' => $record_id, ));
+        $proposer_tokens = $I->grabColumnFromDatabase('c1jr0_md_new_member_proposer', 'hash_token', array('newmember_id' => $record_id, ));
+
+        $I->comment("Proposer_tokens: " . json_encode($proposer_tokens));
+        //$this->assertEquals(2, sizeof($proposer_tokens), "Should be 2 newmember_proposer records");
+
+        $I->amOnPage('/index.php/component/memberdatabase/?view=newmemberproposer&token=' . $proposer_tokens[0]);
+
+        $I->see('Verify New Member Proposal');
+        $I->see('Do you wish to propose Fredrick Jones of tower Lindfield');
+
+        $I->selectOption('jform[approved_flag]', '1');
+
+        $I->click([
+            'class' => 'btn-save-newmemberproposer'
+        ]);
+
+        $I->see('Item saved.');
+        $I->see('Thankyou. Your nomination has been submitted.');
         
-        
+
     }
 }
