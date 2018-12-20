@@ -23,7 +23,7 @@ class UnregisteredUserCest
             'class' => 'btn-save-newmember'
         ]);
         $I->dontSee('Create record not permitted');
-        $I->see('You\'re on the default page for newmember');
+        $I->see('Thank you for starting the membership application process.  A link has been sent to you');
 
         $I->comment('Submitting initial details generates record in new member table');
         $I->seeInDatabase('c1jr0_md_new_member', array(
@@ -91,7 +91,7 @@ class UnregisteredUserCest
             'class' => 'btn-save-newmember'
         ]);
         
-        $I->see('You\'re on the default page for newmember');
+        $I->see('Thank you for submitting your membership application.  An email has been sent to your proposer and seconder to ask them to acknowledge that they support your application.');
 
         $proposer_id = $I->grabFromDatabase('c1jr0_md_new_member_proposer', 'id', array('newmember_id' => $record_id, ));
         $proposer_tokens = $I->grabColumnFromDatabase('c1jr0_md_new_member_proposer', 'hash_token', array('newmember_id' => $record_id, ));
@@ -112,6 +112,31 @@ class UnregisteredUserCest
 
         $I->see('Item saved.');
         $I->see('Thankyou. Your nomination has been submitted.');
+        
+        $I->amOnPage('/index.php/component/memberdatabase/?view=newmemberproposer&token=' . $proposer_tokens[1]);
+
+        $I->see('Verify New Member Proposal');
+        $I->see('Do you wish to propose Fredrick Jones of tower Lindfield');
+
+        $I->selectOption('jform[approved_flag]', '1');
+
+        $I->click([
+            'class' => 'btn-save-newmemberproposer'
+        ]);
+
+        $I->see('Item saved.');
+        $I->see('Thankyou. Your nomination has been submitted.');
+
+        $member_id = $I->grabFromDatabase('c1jr0_md_new_member_proposer', 'member_id', array('newmember_id' => $record_id));    
+        $I->comment("Member Id is: " . $member_id);
+
+        $I->seeInDatabase('c1jr0_md_member', array(
+            'id' => $member_id,
+            'email' => 'fred@jones.com',
+            'forenames' => 'Fredrick',
+            'surname' => 'Jones',
+            'tower_id' => 82
+        ));
         
 
     }

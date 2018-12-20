@@ -1014,7 +1014,7 @@ CREATE TABLE `c1jr0_md_new_member` (
   `soudbow_subscriber` tinyint(1) NOT NULL DEFAULT '0',
   `can_publish_name` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1700 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `c1jr0_md_new_member_proposer`;
