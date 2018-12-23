@@ -138,6 +138,9 @@ class UnregisteredUserCest
             'tower_id' => 82
         ));
         
-
+        $I->comment("Check that you can't acknowledge that you're a proposer twice.");
+        $I->amOnPage('/index.php/component/memberdatabase/?view=newmemberproposer&token=' . $proposer_tokens[1]);
+        $I->see('You have already responded.');
+        $I->dontSee('Submit');
     }
 }
