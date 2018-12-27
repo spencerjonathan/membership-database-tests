@@ -93,6 +93,11 @@ class UnregisteredUserCest
         
         $I->see('Thank you for submitting your membership application.  An email has been sent to your proposer and seconder to ask them to acknowledge that they support your application.');
 
+        // Check that I can't modify record after I've submitted proposers
+        $I->amOnPage('/index.php/component/memberdatabase/?view=newmember&layout=edit&stage=main&token=' . $token);
+        $I->see('You have already submitted your application');
+
+        // Check that proposers can acknowledge their proposal
         $proposer_id = $I->grabFromDatabase('c1jr0_md_new_member_proposer', 'id', array('newmember_id' => $record_id, ));
         $proposer_tokens = $I->grabColumnFromDatabase('c1jr0_md_new_member_proposer', 'hash_token', array('newmember_id' => $record_id, ));
 
@@ -142,5 +147,7 @@ class UnregisteredUserCest
         $I->amOnPage('/index.php/component/memberdatabase/?view=newmemberproposer&token=' . $proposer_tokens[1]);
         $I->see('You have already responded.');
         $I->dontSee('Submit');
+
+        
     }
 }
