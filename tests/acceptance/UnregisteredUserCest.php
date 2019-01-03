@@ -14,6 +14,8 @@ class UnregisteredUserCest
         $I->dontSee('Address 1');
         $I->dontSee('Tower');
 
+        $I->see('Thankyou for applying for membership online.  Before you start, you will need your own email address and the email addresses of the two association members proposing you for membership.');
+
         $I->comment('I can populate fields and submit');
         $I->selectOption('jform[title]', 'Mr');
         $I->fillField('jform[forenames]', 'Fredrick');
@@ -47,6 +49,8 @@ class UnregisteredUserCest
         $I->comment('I can use the token to populate the rest of the membership details');
         $I->amOnPage('/index.php/component/memberdatabase/?view=newmember&layout=edit&stage=main&token=' . $token);
         
+        $I->dontSee('Thankyou for applying for membership online.');
+
         $I->seeInField('#jform_forenames', 'Fredrick');
         $I->seeInField('#jform_email', 'fred@jones.com');
         $I->seeInField('#jform_surname', 'Jones');
