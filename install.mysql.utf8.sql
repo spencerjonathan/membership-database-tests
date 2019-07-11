@@ -1036,3 +1036,11 @@ update `c1jr0_md_member_type` set `new_member_type` = 1 where id in (1, 5, 7);
 ALTER TABLE `c1jr0_md_new_member_proposer` ADD `member_id` INT DEFAULT NULL AFTER `newmember_id`;
 
 
+ALTER TABLE `c1jr0_md_district` ADD `email` varchar(100) DEFAULT NULL AFTER `include_in_ar`;
+
+update `c1jr0_md_district` set email = 'jmspencer@yahoo.com' where id = 1;
+update `c1jr0_md_district` set email = 'jmspencer@yahoo.com' where id = 2;
+update `c1jr0_md_district` set email = 'jmspencer@yahoo.com' where id = 3;
+update `c1jr0_md_district` set email = 'jmspencer@yahoo.com' where id = 4;
+update `c1jr0_md_district` set email = 'jmspencer@yahoo.com' where id = 5;
+
