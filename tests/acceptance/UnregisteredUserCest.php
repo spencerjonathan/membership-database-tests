@@ -27,6 +27,21 @@ class UnregisteredUserCest
         $I->dontSee('Create record not permitted');
         $I->see('Thank you for starting the membership application process.  A link has been sent to you');
 
+        $I->comment('I can\'t start application twice');
+        $I->amOnPage('/index.php/component/memberdatabase/?view=newmember&layout=edit');
+        $I->comment('I can populate fields and submit');
+        $I->selectOption('jform[title]', 'Mr');
+        $I->fillField('jform[forenames]', 'Fredrick');
+        $I->fillField('jform[surname]', 'Jones');
+        $I->fillField('jform[email]', 'fred@jones.com');
+        $I->click([
+            'class' => 'btn-save-newmember'
+        ]);
+        $I->dontSee('Create record not permitted');
+        $I->dontSee('Thank you for starting the membership application process.  A link has been sent to you');
+        $I->see('A membership application request has already been submitted using this email address');
+
+
         $I->comment('Submitting initial details generates record in new member table');
         $I->seeInDatabase('c1jr0_md_new_member', array(
             'email' => 'fred@jones.com'

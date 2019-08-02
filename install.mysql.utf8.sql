@@ -1043,4 +1043,11 @@ update `c1jr0_md_district` set email = 'jmspencer@yahoo.com' where id = 2;
 update `c1jr0_md_district` set email = 'jmspencer@yahoo.com' where id = 3;
 update `c1jr0_md_district` set email = 'jmspencer@yahoo.com' where id = 4;
 update `c1jr0_md_district` set email = 'jmspencer@yahoo.com' where id = 5;
+ALTER TABLE `c1jr0_md_district` ADD `secretary_id` int(5) DEFAULT NULL AFTER `email`;
+
+update `c1jr0_md_district` set secretary_id = 8 where id = 1;
+update `c1jr0_md_district` set secretary_id = 10 where id = 2;
+update `c1jr0_md_district` set secretary_id = 14 where id = 3;
+update `c1jr0_md_district` set secretary_id = 16 where id = 4;
+update `c1jr0_md_district` set secretary_id = 16 where id = 5;
 
