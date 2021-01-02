@@ -979,9 +979,7 @@ CREATE TABLE `c1jr0_md_usertower` (
 --
 
 INSERT INTO `c1jr0_md_usertower` (`id`, `user_id`, `tower_id`) VALUES
-(1, 412, 82),
-(2, 412, 138),
-(3, 413, 82);
+(1, 361, 82);
 
 
 DROP TABLE IF EXISTS `c1jr0_md_new_member`;
@@ -1051,3 +1049,12 @@ update `c1jr0_md_district` set secretary_id = 14 where id = 3;
 update `c1jr0_md_district` set secretary_id = 16 where id = 4;
 update `c1jr0_md_district` set secretary_id = 16 where id = 5;
 
+update c1jr0_md_member 
+inner join c1jr0_users u on u.username = "Jon"
+set insurance_group = "25-69", mod_date = current_timestamp(), mod_user_id = u.id
+where c1jr0_md_member.insurance_group = "16-70";
+
+update c1jr0_md_member 
+inner join c1jr0_users u on u.username = "Jon"
+set insurance_group = "70-79", mod_date = current_timestamp(), mod_user_id = u.id
+where c1jr0_md_member.insurance_group = "Over 70";

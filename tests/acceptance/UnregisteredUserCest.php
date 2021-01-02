@@ -73,7 +73,7 @@ class UnregisteredUserCest
         $I->fillField('jform[address1]', 'Number 1 Toy Town');
         $I->selectOption('jform[tower_id]', 'Lindfield, All Saints');
         $I->selectOption('jform[member_type_id]', 'Adult');
-        $I->selectOption('jform[insurance_group]', '16-70');
+        $I->selectOption('jform[insurance_group]', '16-24');
         $I->click([
             'class' => 'btn-save-newmember'
         ]);

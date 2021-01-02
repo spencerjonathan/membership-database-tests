@@ -50,7 +50,7 @@ class TowerCorrespondentCest
 	$I->dontSee('Abbott, Deborah');
 	$I->click('Spencer, Jonathan');
 	$I->see('Lindfield');
-	$I->see('16-70');
+	$I->see('16-24');
 	$I->dontSee('Telephone Number');
 	$I->dontSee('Address 1');
 	$I->dontSee('Membership Form Rec\'d');
