@@ -65,6 +65,7 @@ class UnregisteredUserCest
         $I->amOnPage('/index.php/component/memberdatabase/?view=newmember&layout=edit&stage=main&token=' . $token);
         
         $I->dontSee('Thankyou for applying for membership online.');
+        $I->dontSee('Notes');
 
         $I->seeInField('#jform_forenames', 'Fredrick');
         $I->seeInField('#jform_email', 'fred@jones.com');

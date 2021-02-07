@@ -64,6 +64,7 @@ class MembershipCoordinatorCest
 	$I->see('Telephone Number');
 	$I->see('Address 1');
 	$I->see('Membership Form Rec\'d');
+	$I->see('Notes');
     }
 
     public function canSeeAMembersInvoices(AcceptanceTester $I)
@@ -106,6 +107,23 @@ class MembershipCoordinatorCest
 	$I->dontSee('mini@mouse.com');
         $I->comment('I see preferred tower correspondance email address');
 	$I->see('test_corresp@testmail.com');
+    }
+    
+    public function canModifyMemberAttributes(AcceptanceTester $I)
+    {
+	$I->amGoingTo('check that I can modify attributes of a member');
+	$I->amOnPage('/index.php/component/memberdatabase?view=members');
+	$I->see('Blogs, Fred (721)');
+	$I->click('Blogs, Fred (721)');
+	$I->fillField('jform[forenames]', 'F');
+	$I->fillField('jform[email]', 'freddys@newemail.com');
+	$I->click([
+            'class' => 'btn-save-close'
+        ]);
+    $I->see('Blogs, F (721)');
+    $I->dontSee('Blogs, Fred (721)');
+    $I->click('Blogs, F (721)');
+    $I->seeInField('jform[email]','freddys@newemail.com');
     }
 
 }

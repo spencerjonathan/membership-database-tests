@@ -1058,3 +1058,19 @@ update c1jr0_md_member
 inner join c1jr0_users u on u.username = "Jon"
 set insurance_group = "70-79", mod_date = current_timestamp(), mod_user_id = u.id
 where c1jr0_md_member.insurance_group = "Over 70";
+
+DROP TABLE IF EXISTS `c1jr0_md_mail`;
+CREATE TABLE `c1jr0_md_mail` (
+  `id` int(3) NOT NULL AUTO_INCREMENT,
+  `tower_id` int(3) NOT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `reply_to_email` varchar(100) DEFAULT NULL,
+  `reply_to_name` varchar(40) DEFAULT NULL,
+  `subject` varchar(100) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `mod_date` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `c1jr0_md_member` ADD `notes` text DEFAULT NULL AFTER `country`;
+ALTER TABLE `c1jr0_md_member_history` ADD `notes` text DEFAULT NULL AFTER `country`;

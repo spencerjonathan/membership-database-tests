@@ -54,6 +54,21 @@ class TowerCorrespondentCest
 	$I->dontSee('Telephone Number');
 	$I->dontSee('Address 1');
 	$I->dontSee('Membership Form Rec\'d');
+	$I->dontSee('Notes');
+    }
+
+    public function canModifyMemberAttributes(AcceptanceTester $I)
+    {
+	$I->amGoingTo('check that I can modify minimal attributes of a member');
+	$I->amOnPage('/index.php/component/memberdatabase?view=members');
+	$I->see('Spencer, Jonathan');
+	$I->dontSee('Abbott, Deborah');
+	$I->click('Spencer, Jonathan');
+	$I->fillField('jform[forenames]', 'Jonny');
+	$I->click([
+            'class' => 'btn-save-close'
+        ]);
+    $I->see('Spencer, Jonny');
     }
 
 }
