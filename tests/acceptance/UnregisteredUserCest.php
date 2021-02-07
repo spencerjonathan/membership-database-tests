@@ -168,6 +168,32 @@ class UnregisteredUserCest
         $I->see('You have already responded.');
         $I->dontSee('Submit');
 
-        
+    }
+    
+    public function canEditOwnRecord(AcceptanceTester $I) {
+        $I->amGoingTo('check that I can modify attributes of my membership record');
+	    $I->amOnPage('/index.php?option=com_memberdatabase&view=requestlink');
+	    $I->see('Request Access To Your Personal Data');
+	    $I->fillField('email', 'freddy@blogsy.com');
+	    
+	    $I->click([
+            'class' => 'btn-submit-request'
+        ]);
+	    $token = $I->grabFromDatabase('c1jr0_md_member_token', 'hash_token', array(
+            'email' => 'freddy@blogsy.com'
+        ));
+        $I->amOnPage('/index.php/component/memberdatabase/?view=members&token=' . $token);
+        $I->see('Blogsy, Freddy (54)');
+        $I->click('Blogsy, Freddy (54)');
+        $I->seeInField('jform[email]','freddy@blogsy.com');
+        $I->selectOption('jform[newsletters]', 'Postal');
+        $I->fillField('jform[forenames]', 'Freddy Bob');
+        $I->click([
+            'class' => 'btn-save-and-verify'
+        ]);
+        $I->see('Blogsy, Freddy Bob (54)');
+        $I->click('Blogsy, Freddy Bob (54)');
+        $I->seeInField('jform[newsletters]','Postal');
+ 	    
     }
 }
