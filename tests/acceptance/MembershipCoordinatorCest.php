@@ -125,5 +125,25 @@ class MembershipCoordinatorCest
     $I->click('Blogs, F (721)');
     $I->seeInField('jform[email]','freddys@newemail.com');
     }
+    
+    public function canCreateIndividualInvoice(AcceptanceTester $I)
+    {
+	$I->amGoingTo('check that I can create an individual invoice for a member');
+	$I->amOnPage('/index.php/component/memberdatabase?view=members');
+	$I->see('Blogs, Fred (630)');
+	$I->click('Blogs, Fred (630)');
+    //$I->see('Invoices');
+	$I->dontSee('£8.00');
+	$I->click([
+            'class' => 'btn-create-invoice'
+        ]);
+    $I->see('£8.00');
+    $I->dontSee('Invoice already exists for this member');
+    $I->click([
+            'class' => 'btn-create-invoice'
+        ]);
+    $I->see('Invoice already exists for this member');
+
+    }
 
 }
