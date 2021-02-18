@@ -22,14 +22,16 @@ class MembershipCoordinatorCest
     public function canCreateInvoice(AcceptanceTester $I)
     {
 	$I->amOnPage('/index.php?option=com_memberdatabase&view=memberdatabase');
-        $I->comment('I See Warnham, St Margaret');
+    $I->comment('I See Warnham, St Margaret');
 	$I->see('Warnham, St Margaret', '.members-without-invoice');
 	//$I->amOnPage('/index.php?option=com_memberdatabase&view=invoice&layout=create&list_view=invoice&towerId=138');
 	$I->amOnPage('/index.php?option=com_memberdatabase&view=invoice&layout=create&towerId=138');
-        $I->comment('I see correct total of 132.00');
-        $I->see('132.00');
+    $I->comment('I see correct total of 132.00');
+    $I->see('132.00');
+    $I->comment('I see the Email Invoice button');
+    $I->see('Email Invoice');
 	$I->click(['class' => 'btn-create-invoice']);
-        $I->see('Invoice created successfully');
+    $I->see('Invoice created successfully');
 	$I->dontSee('Warnham, St Margaret', '.members-without-invoice');
 	$I->see('Warnham, St Margaret', '.invoices-to-be-paid');
 	$I->amOnPage('/index.php?option=com_memberdatabase&view=invoices');
